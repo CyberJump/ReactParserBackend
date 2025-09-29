@@ -15,6 +15,10 @@ app.use(express.json());
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+app.get("/", (req, res) => {
+  res.send("✅ API is running. Use /blogs/all or /blogs/names etc.");
+});
+
 
 app.post('/upload', upload.single('file'), async (req, res) => {
   try {
