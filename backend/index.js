@@ -3,6 +3,7 @@ import multer from 'multer';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import serverless from 'serverless-http';
 
 dotenv.config(); 
 
@@ -12,7 +13,6 @@ const supabase = createClient(supabaseurl, supabasekey);
 
 
 const app = express();
-const port = 8000;
 app.use(cors());
 
 app.use(express.json());
@@ -95,7 +95,4 @@ app.delete('/blogs/:id',async (req,res)=>{
   }
 })
 
-app.listen(port, () => {
-  console.log(`Express server listening at http://localhost:${port}`);
-});
-
+export const handler = serverless(app);
